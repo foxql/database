@@ -1,6 +1,6 @@
 {
   "name": "@foxql/foxql-index",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "javascript object based inverted index implementation",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,5 @@
   "bugs": {
     "url": "https://github.com/boraozer/foxql-index/issues"
   },
-  "homepage": "https://github.com/boraozer/foxql-index#readme",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "homepage": "https://github.com/boraozer/foxql-index#readme"
 }
