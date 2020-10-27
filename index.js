@@ -4,7 +4,6 @@ class database{
     {
         this.documents = {};
         this.indexs = {};
-        this.stats = {};
         this.ref = 'id';    
         this.analyzers = {};
         this.indexSeperator = ' ';
@@ -176,6 +175,28 @@ class database{
         oneDimensionalResult.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
         
         return oneDimensionalResult;
+    }
+
+    export()
+    {
+        return JSON.stringify({
+            documents : this.documents,
+            indexs : this.indexs,
+            stats : this.stats,
+            documentLength : this.documentLength,
+            documentInfo : this.documentInfo
+        });
+    }
+
+    import(dumpString)
+    {
+        const dumpObject = JSON.parse(dumpString);
+        this.documents = dumpObject.documents;
+        this.indexs = dumpObject.indexs;
+        this.stats = dumpObject.stats; 
+        this.documentLength = dumpObject.documentLength;
+        this.documentInfo = dumpObject.documentInfo;
+        return true;
     }
 }
 
