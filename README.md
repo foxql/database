@@ -5,6 +5,12 @@ this project is only use term freq.
 [Foxql p2p search engine project repo](https://github.com/boraozer/foxql "Foxql p2p search engine project repo")
 
 ### Documentation
+
+#### Install npm
+```
+    npm i @foxql/foxql-index
+```
+
 #### Basic usage
 ``` javascript
 const foxqlIndex = require('foxql-index');
