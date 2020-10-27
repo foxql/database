@@ -13,7 +13,7 @@ npm i @foxql/foxql-index
 
 #### Basic usage
 ``` javascript
-const foxqlIndex = require('foxql-index');
+const foxqlIndex = require('@foxql/foxql-index');
 
 const database = new foxqlIndex();
 
