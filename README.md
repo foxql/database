@@ -8,7 +8,7 @@ this project is only use term freq.
 
 #### Install npm
 ```
-    npm i @foxql/foxql-index
+npm i @foxql/foxql-index
 ```
 
 #### Basic usage
@@ -36,45 +36,45 @@ database.registerAnalyzer('tokenizer', (string)=>{
 
 #### Add document
 ``` javascript 
-    database.addDoc({
-        title : 'test title',
-        content : 'test example content, very simple usage',
-        documentId : 1
-    });
+database.addDoc({
+    title : 'test title',
+    content : 'test example content, very simple usage',
+    documentId : 1
+});
 ```
 
 #### Search document
 ``` javascript 
-    const results = database.search("test query");
-    console.log(results);
+const results = database.search("test query");
+console.log(results);
 ```
 
 
 #### Export database
 ``` javascript
-    const dump = database.export();
+const dump = database.export();
 ```
 
 #### Import database
 ``` javascript
-    const dump = database.export();
-    database.import(dump);
+const dump = database.export();
+database.import(dump);
 ```
 
 #### Change analyzer methods sort
 ``` javascript
-    database.registerAnalyzer('tokenizer', (string)=>{
-        return string.toLowerCase().replace(/  +/g, ' ');
-    }); 
-    database.registerAnalyzer('tokenizer2', (string)=>{
-        return string.trim();
-    }); 
+database.registerAnalyzer('tokenizer', (string)=>{
+    return string.toLowerCase().replace(/  +/g, ' ');
+}); 
+database.registerAnalyzer('tokenizer2', (string)=>{
+    return string.trim();
+}); 
 
-    //if want aboving change methods sort
+//if want aboving change methods sort
 
-    database.analyzerSteps = [
-        'tokenizer2',
-        'tokenizer'
-    ];
+database.analyzerSteps = [
+    'tokenizer2',
+    'tokenizer'
+];
     
 ```
