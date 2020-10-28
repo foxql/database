@@ -78,3 +78,13 @@ database.analyzerSteps = [
 ];
     
 ```
+
+#### Delete document
+``` javascript
+database.deleteDoc('ref id');
+```
+
+#### Get document by ref
+``` javascript
+database.getDoc('ref id');
+```
