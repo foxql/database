@@ -10,6 +10,7 @@ class database{
         this.documentLength = 0;
         this.analyzerSteps = [];
         this.documentInfo = {};
+        this.waitingSave = false;
     }
 
     registerAnalyzer(name, method){
@@ -42,6 +43,7 @@ class database{
 
         this.documents[docRef] = doc;
         this.documentLength++;
+        this.waitingSave = true;
         return true;
     }
 
@@ -133,6 +135,7 @@ class database{
 
         delete this.documents[ref];
         this.documentLength--;        
+        this.waitingSave = true;
         return true;
     }
 

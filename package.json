@@ -1,6 +1,6 @@
 {
   "name": "@foxql/foxql-index",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "javascript object based inverted index implementation",
   "main": "index.js",
   "scripts": {
