@@ -17,18 +17,20 @@ const foxqlIndex = require('@foxql/foxql-index');
 
 const database = new foxqlIndex();
 
-database.addField([
-    'title',
-    'content'
-]);
-
-database.setRef('documentId');
+database.pushCollection({
+    collectionName : 'entrys',
+    fields : [
+        'title',
+        'content'
+    ],
+    ref : 'documentId'
+});
 ```
 
 #### Add Analyzer methods
 ``` javascript
 
-database.registerAnalyzer('tokenizer', (string)=>{
+database.useCollection('entrys').registerAnalyzer('tokenizer', (string)=>{
     return string.toLowerCase().replace(/  +/g, ' ').trim();
 }); 
 
@@ -36,7 +38,7 @@ database.registerAnalyzer('tokenizer', (string)=>{
 
 #### Add document
 ``` javascript 
-database.addDoc({
+database.useCollection('entrys').addDoc({
     title : 'test title',
     content : 'test example content, very simple usage',
     documentId : 1
@@ -45,17 +47,17 @@ database.addDoc({
 
 #### Search document
 ``` javascript 
-const results = database.search("test query");
+const results = database.useCollection('entrys').search("test query");
 console.log(results);
 ```
 
 
-#### Export database
+#### Export Database
 ``` javascript
 const dump = database.export();
 ```
 
-#### Import database
+#### Import Database
 ``` javascript
 const dump = database.export();
 database.import(dump);
@@ -63,16 +65,16 @@ database.import(dump);
 
 #### Change analyzer methods sort
 ``` javascript
-database.registerAnalyzer('tokenizer', (string)=>{
+database.useCollection('entrys').registerAnalyzer('tokenizer', (string)=>{
     return string.toLowerCase().replace(/  +/g, ' ');
 }); 
-database.registerAnalyzer('tokenizer2', (string)=>{
+database.useCollection('entrys').registerAnalyzer('tokenizer2', (string)=>{
     return string.trim();
 }); 
 
 //if want aboving change methods sort
 
-database.analyzerSteps = [
+database.useCollection('entrys').analyzerSteps = [
     'tokenizer2',
     'tokenizer'
 ];
@@ -81,10 +83,10 @@ database.analyzerSteps = [
 
 #### Delete document
 ``` javascript
-database.deleteDoc('ref id');
+database.useCollection('entrys').deleteDoc('ref id');
 ```
 
 #### Get document by ref
 ``` javascript
-database.getDoc('ref id');
+database.useCollection('entrys').getDoc('ref id');
 ```
