@@ -167,8 +167,10 @@ class indexs{
                         };
                     }
 
-                    if(info.indexPosMap[term].length > 0){
-                        resultMap[ref].score += info.indexPosMap[term].length  / info.bestTerm.count; 
+                    const positionMap = info.indexPosMap[term] || [];
+
+                    if(positionMap.length > 0){
+                        resultMap[ref].score += (positionMap.length  / info.bestTerm.count) * term.length; 
                     }
                 });
             }
