@@ -8,11 +8,28 @@ database.pushCollection({
         'title',
         'content'
     ],
-    ref : 'documentId'
+    ref : 'documentId',
+    schema : {
+        title : {
+            type : 'string',
+            min : 3,
+            max : 80,
+            required : true
+        },
+        content : {
+            type : 'string',
+            min : 7,
+            max : 500,
+            required : true
+        },
+        documentId : {
+            createField : ['title', 'content']
+        }   
+    }
 });
 
 database.useCollection('entrys').registerAnalyzer('tokenizer', (string)=>{
-    return string.toLowerCase().replace(/  +/g, ' ').trim();
+    return string.toLowerCase().replace(/ +/g, ' ').trim();
 });
 
 database.useCollection('entrys').addDoc({
@@ -20,10 +37,6 @@ database.useCollection('entrys').addDoc({
     content : 'test example content, very simple usage',
     documentId : 1
 });
-
-const dump = database.export();
-
-database.import(dump);
 
 
 

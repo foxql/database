@@ -1,3 +1,5 @@
+import validator from './foxql-validator.js';
+
 class indexs{
 
     constructor()
@@ -12,6 +14,7 @@ class indexs{
         this.documentInfo = {};
         this.waitingSave = false;
         this.fields = [];
+        this.schema = {};
     }
 
     registerAnalyzer(name, method){
@@ -24,7 +27,14 @@ class indexs{
         this.fields = fields;
     }
 
-    setRef(ref){this.ref = ref;}
+    setRef(ref){
+        this.ref = ref;
+    }
+
+    setSchema(schema)
+    {
+        this.schema = schema;
+    }
 
     startAnalyzer(string)
     {
@@ -37,6 +47,19 @@ class indexs{
 
     addDoc(doc)
     {
+
+        const validate = validator(doc, this.schema);
+
+        if(validate.fail) {
+            return;
+        }
+
+        const generatedRef = validate.generatedRef;
+
+        if(generatedRef) {
+            doc[this.ref] = generatedRef;
+        }
+
         const docRef = doc[this.ref] || false;
         if(!docRef){return false;}
 
@@ -67,11 +90,6 @@ class indexs{
 
     findStringInMaxTerm(string)
     {
-        let result = {
-            keyword : null,
-            count : 0
-        };
-
         let processMap = {};
 
         string.split(this.indexSeperator).forEach(keyword => {

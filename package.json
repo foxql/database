@@ -1,11 +1,11 @@
 {
   "name": "@foxql/foxql-index",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "javascript object based inverted index implementation",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "parcel develop/index.html"
+    "dev": "parcel develop/index.html"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,8 @@
   "homepage": "https://github.com/boraozer/foxql-index#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "hash.js": "^1.1.7"
   }
 }

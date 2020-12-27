@@ -5,16 +5,16 @@ class database {
     constructor()
     {
         this.collections = {}
-        this.analyzers = {}
     }
 
-    pushCollection({collectionName, fields, ref})
+    pushCollection({collectionName, fields, ref, schema})
     {
         let collection = new indexs();
         collection.addField(fields);
         collection.setRef(ref);
+        collection.setSchema(schema);
 
-        this.collections[collectionName] = collection
+        this.collections[collectionName] = collection;
     }
 
     useCollection(collectionName)
