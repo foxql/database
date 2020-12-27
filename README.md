@@ -23,7 +23,24 @@ database.pushCollection({
         'title',
         'content'
     ],
-    ref : 'documentId'
+    ref : 'documentId',
+    schema : {
+        title : {
+            type : 'string',
+            min : 3,
+            max : 80,
+            required : true
+        },
+        content : {
+            type : 'string',
+            min : 7,
+            max : 500,
+            required : true
+        },
+        documentId : {
+            createField : ['title', 'content']
+        }   
+    }
 });
 ```
 
