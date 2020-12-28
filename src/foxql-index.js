@@ -48,13 +48,21 @@ class indexs{
     addDoc(doc)
     {
 
-        const validate = validator(doc, this.schema);
+        const validate = validator(doc, this.schema, this.ref);
 
         if(validate.fail) {
             return;
         }
 
         const generatedRef = validate.generatedRef;
+        const generatedFields = validate.generatedFields;
+
+        if(generatedFields.length > 0) {
+            generatedFields.forEach( obj => {
+                doc[obj.field] = obj.value
+            });
+        }
+
 
         if(generatedRef) {
             doc[this.ref] = generatedRef;

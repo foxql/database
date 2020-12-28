@@ -32,10 +32,11 @@ const exceptionalMethodMap = {
 
 
 
-export default function validate(document, constraint) {
+export default function validate(document, constraint, refName) {
 
     let fail = false;
     let generatedRef = false;
+    let generatedFields = [];
 
     for(let field in constraint) {
         const rules = constraint[field];
@@ -47,7 +48,16 @@ export default function validate(document, constraint) {
 
             if(exceptionalMethodMap[method] !== undefined ) {
                 if(method == 'createField') {
-                    generatedRef = methods[method](ruleValue, document)
+                    const generatedHash = methods[method](ruleValue, document);
+                    if(refName == field) {
+                        generatedRef = generatedHash
+                    }else {
+                        generatedFields.push({
+                            field : field,
+                            value :  generatedHash
+                        });
+                    }
+                    
                 }
                 continue
             }
@@ -62,6 +72,7 @@ export default function validate(document, constraint) {
 
     return {
         fail : fail,
-        generatedRef : generatedRef
+        generatedRef : generatedRef,
+        generatedFields : generatedFields
     };
 }
