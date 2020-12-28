@@ -220,7 +220,8 @@ class indexs{
             documentLength : this.documentLength,
             documentInfo : this.documentInfo,
             fields : this.fields,
-            ref : this.ref
+            ref : this.ref,
+            schema : this.schema
         });
     }
 
@@ -229,6 +230,7 @@ class indexs{
         const dump = JSON.parse(dumpString);
         this.addField(dump.fields);
         this.setRef(dump.ref);
+        this.setSchema(dump.schema);
         this.documents = dump.documents;
         this.indexs = dump.indexs;
         this.documentLength = dump.documentLength;
