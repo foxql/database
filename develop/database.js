@@ -24,6 +24,9 @@ database.pushCollection({
         },
         documentId : {
             createField : ['title', 'content']
+        },
+        documentSubId : {
+            createField : ['title']
         }   
     }
 });
