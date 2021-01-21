@@ -164,6 +164,7 @@ class indexs{
         }
 
         delete this.documents[ref];
+        delete this.documentInfo[ref];
         this.documentLength--;        
         this.waitingSave = true;
         return true;
