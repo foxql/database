@@ -1,6 +1,6 @@
 {
   "name": "@foxql/foxql-index",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "javascript object based inverted index implementation",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boraozer/foxql-index.git"
+    "url": "git+https://github.com/foxql/database"
   },
   "keywords": [
     "inverted",
@@ -21,9 +21,9 @@
   "author": "Bora Erdinç Özer",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/boraozer/foxql-index/issues"
+    "url": "https://github.com/foxql/database/issues"
   },
-  "homepage": "https://github.com/boraozer/foxql-index#readme",
+  "homepage": "https://github.com/foxql/database#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
   },
