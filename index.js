@@ -1,4 +1,4 @@
-import indexs from './src/foxql-index.js';
+import indexs from './src/core/invertedIndex';
 
 class database {
 
