@@ -1,4 +1,4 @@
-import validator from './foxql-validator.js';
+import validator from './validator.js';
 
 class indexs{
 
@@ -197,7 +197,7 @@ class indexs{
                     const positionMap = info.indexPosMap[term] || [];
 
                     if(positionMap.length > 0){
-                        resultMap[ref].score += (positionMap.length  / info.bestTerm.count) * term.length; 
+                        resultMap[ref].score += (positionMap.length  / info.bestTerm.count); 
                     }
                 });
             }
