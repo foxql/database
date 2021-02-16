@@ -1,15 +1,33 @@
 import hash from 'hash.js';
 
+const typeCheck = {
+    'string' : (data)=>{
+        return typeof data === 'string'
+    },
+    'date' : (data) => {
+        return Object.prototype.toString.call(data) === '[object Date]'
+    },
+    'number' : (data)=> {
+        return typeof data === 'number'
+    }
+};
+
 function tokenizer(string)
 {
     return string.toLowerCase().replace(/[^\w\s]/gi, '').replace(/ +/g, '').trim();
 }
 
+
 const methods = {
     min : (min, data)=> { return data.length < min ? false : true },
     max : (max, data)=>{ return data.length > max ? false : true },
     size : (size, data) => { return data.length !== size },
-    type : (type, data)=> { return typeof data === type ? true : false},
+    type : (type, data)=> { 
+        const method = typeCheck[type] || false;
+        if(!method) return false;
+
+        return method(data);
+    },
     required : (field, data) => { return data[field] ? false : true },
     createField : (fields, data) => {
         let generatedRef = '';
