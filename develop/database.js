@@ -6,7 +6,8 @@ database.pushCollection({
     collectionName : 'entrys',
     fields : [
         'title',
-        'content'
+        'content',
+        'entryKey'
     ],
     ref : 'documentId',
     schema : {
@@ -25,8 +26,12 @@ database.pushCollection({
         documentId : {
             createField : ['title', 'content']
         },
-        documentSubId : {
+        entryKey : {
             createField : ['title']
+        },
+        createDate : {
+            type : 'date',
+            required : true
         }   
     }
 });
@@ -38,7 +43,7 @@ database.useCollection('entrys').registerAnalyzer('tokenizer', (string)=>{
 database.useCollection('entrys').addDoc({
     title : 'test title',
     content : 'test example content, very simple usage',
-    documentId : 1
+    createDate : new Date()
 });
 
 
