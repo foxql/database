@@ -51,7 +51,7 @@ class indexs{
         const validate = validator(doc, this.schema, this.ref);
 
         if(validate.fail) {
-            return;
+            return false;
         }
 
         const generatedRef = validate.generatedRef;
