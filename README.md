@@ -2,7 +2,7 @@
 inverted index database system simple implementation for foxql.
 this project is only use term freq.
 
-[Foxql p2p search engine project repo](https://github.com/boraozer/foxql "Foxql p2p search engine project repo")
+[Foxql p2p social network project repo](https://github.com/foxql "Foxql p2p social network project repo")
 
 ### Documentation
 
