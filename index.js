@@ -1,10 +1,12 @@
 import indexs from './src/core/invertedIndex';
+import {version} from './package.json';
 
 class database {
 
     constructor()
     {
         this.collections = {}
+        this.version = version;
     }
 
     pushCollection({collectionName, fields, ref, schema})
