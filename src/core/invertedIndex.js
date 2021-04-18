@@ -215,22 +215,7 @@ class indexs{
 
     export()
     {
-        return JSON.stringify({
-            documents : this.documents
-        });
-    }
-
-    import(dumpString)
-    {
-        const dump = JSON.parse(dumpString);
-        this.addField(dump.fields);
-        this.setRef(dump.ref);
-        this.setSchema(dump.schema);
-        this.documents = dump.documents;
-        this.indexs = dump.indexs;
-        this.documentLength = dump.documentLength;
-        this.documentInfo = dump.documentInfo;
-        return true;
+        return this.documents;
     }
 }
 
