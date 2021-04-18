@@ -4,7 +4,7 @@
  * https://github.com/antonylesuisse/lzwjs
  */
 
-exports.lzw_encode = (s,base=64) => {
+exports.encode = (s,base=64) => {
     if (!s) return s;
     var sym="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_!#%()*+,./:;=?@[]^{|}~ $`";
     sym +="\1\2\3\4\5\6\7\b\t\v\f\16\17\20\21\22\23\24\25\26\27\30\31\32\33\34\35\36\37\xf7&'>\0\n\r\"<\\";
@@ -40,7 +40,7 @@ exports.lzw_encode = (s,base=64) => {
     return o.join("");
 }
 
-exports.lzw_decode = (s,base=64) => {
+exports.decode = (s,base=64) => {
     var sym="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_!#%()*+,./:;=?@[]^{|}~ $`";
     sym +="\1\2\3\4\5\6\7\b\t\v\f\16\17\20\21\22\23\24\25\26\27\30\31\32\33\34\35\36\37\xf7&'>\0\n\r\"<\\";
     var size=base*base*base;
