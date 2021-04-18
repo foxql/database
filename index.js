@@ -1,5 +1,6 @@
 import indexs from './src/core/invertedIndex';
-import {version} from './package.json';
+import { version } from './package.json';
+import { encode, decode } from './src/utils/lz77';
 
 class database {
 
@@ -26,28 +27,43 @@ class database {
 
     export()
     {
-        let dump = {};
+        let dump = {
+            collections : {},
+            version : this.version
+        };
         const collections = this.collections;
         for(let collectionName in collections){
             const indexs = collections[collectionName];
-            dump[collectionName] = indexs.export();
+            dump.collections[collectionName] = indexs.export();
         }
 
-        return dump;
+        return encode(
+            JSON.stringify(dump)
+        );
     }
 
-    import(dumpObject)
+    import(lz77String)
     {
-        for(let collectionName in dumpObject) {
+        const jsonString = decode(lz77String);
+        const dumpObject = JSON.parse(jsonString);
 
-            const collection = new indexs();
+        const dumpCollections = dumpObject.collections;
 
-            collection.import(
-                dumpObject[collectionName]
-            );
+        for(let collectionName in dumpCollections) {
 
-            this.collections[collectionName] = collection
+            if(this.collections[collectionName] === undefined) {
+                continue;
+            }
+
+            const documents = Object.values(dumpCollections[collectionName]);
+            const targetCollection = this.useCollection(collectionName);
+
+            documents.forEach(doc => {
+                targetCollection.addDoc(doc)
+            })
         }
+
+        return true;
     }
 }
 
