@@ -216,13 +216,7 @@ class indexs{
     export()
     {
         return JSON.stringify({
-            documents : this.documents,
-            indexs : this.indexs,
-            documentLength : this.documentLength,
-            documentInfo : this.documentInfo,
-            fields : this.fields,
-            ref : this.ref,
-            schema : this.schema
+            documents : this.documents
         });
     }
 
