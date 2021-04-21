@@ -1,5 +1,5 @@
 import indexs from './src/core/invertedIndex';
-import { version } from './package.json';
+import  version from './src/version';
 import { encode, decode } from './src/utils/lz77';
 
 class database {
