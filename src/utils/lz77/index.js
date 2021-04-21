@@ -7,7 +7,7 @@
 exports.encode = (s,base=64) => {
     if (!s) return s;
     var sym="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_!#%()*+,./:;=?@[]^{|}~ $`";
-    sym +="\1\2\3\4\5\6\7\b\t\v\f\16\17\20\21\22\23\24\25\26\27\30\31\32\33\34\35\36\37\xf7&'>\0\n\r\"<\\";
+    sym +="\\1\\2\\3\\4\\5\\6\\7\\b\\t\\v\\f\\16\\17\\20\\21\\22\\23\\24\\25\\26\\27\\30\\31\\32\\33\\34\\35\\36\\37\\xf7&'>\\0\\n\\r\"<\\";
     var size=base*base*base;
     var d=new Map();
     var num=256;
@@ -42,7 +42,7 @@ exports.encode = (s,base=64) => {
 
 exports.decode = (s,base=64) => {
     var sym="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_!#%()*+,./:;=?@[]^{|}~ $`";
-    sym +="\1\2\3\4\5\6\7\b\t\v\f\16\17\20\21\22\23\24\25\26\27\30\31\32\33\34\35\36\37\xf7&'>\0\n\r\"<\\";
+    sym +="\\1\\2\\3\\4\\5\\6\\7\\b\\t\\v\\f\\16\\17\\20\\21\\22\\23\\24\\25\\26\\27\\30\\31\\32\\33\\34\\35\\36\\37\\xf7&'>\\0\\n\\r\"<\\";
     var size=base*base*base;
     var symd={};
     for(var i=0; i<base; i++){
