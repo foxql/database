@@ -28,14 +28,12 @@ database.pushCollection({
         title : {
             type : 'string',
             min : 3,
-            max : 80,
-            required : true
+            max : 80
         },
         content : {
             type : 'string',
             min : 7,
             max : 500,
-            required : true
         },
         documentId : {
             createField : ['title', 'content']
