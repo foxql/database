@@ -7,22 +7,42 @@ function tokenizer(string)
 }
 
 
+function typeControl(type, data)
+{
+    const method = typeCheck[type] || false;
+    if(!method) return false;
+
+    return method(data);
+}
+
 const methods = {
     min : (min, data)=> { return data.length < min ? false : true },
     max : (max, data)=>{ return data.length > max ? false : true },
     size : (size, data) => { return data.length !== size },
     type : (type, data)=> { 
-        const method = typeCheck[type] || false;
-        if(!method) return false;
+        if(Object.prototype.toString.call(type) === '[object Array]') {
+            let typeControlLoopLength = type.length;
+            let typeControlFailCount = 0;
+            for(let typeName in type) {
+                const targetTypeControl = typeControl(type[typeName], data);
+                if(!targetTypeControl) {
+                    typeControlFailCount++;
+                }
+            }
+            return typeControlFailCount >= typeControlLoopLength ? false : true;
+        }
 
-        return method(data);
+        return typeControl(type, data)
     },
-    required : (field, data) => { return data[field] ? false : true },
     createField : (fields, data) => {
         let generatedRef = '';
         
         fields.forEach( field => {
-            generatedRef += tokenizer(data[field])
+            const value = data[field];
+            if(typeof value === 'string') {
+                generatedRef += tokenizer(data[field])
+            }
+            
         });
 
         return hash.sha256().update(generatedRef).digest('hex')
@@ -47,8 +67,11 @@ export default function validate(document, constraint, refName) {
 
     for(let field in constraint) {
         const rules = constraint[field];
-        const documentValue = document[field] || false;
-        
+        if(document[field] === undefined && rules.createField == undefined) {
+            fail = true
+            break;
+        }
+        const documentValue = document[field] === undefined ? false : document[field];
         for(let method in rules) {
 
             const ruleValue = rules[method];
