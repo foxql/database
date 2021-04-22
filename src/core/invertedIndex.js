@@ -73,7 +73,12 @@ class indexs{
 
         for(let field in doc){
             if(!this.checkField(field) || field == this.ref){continue;}
-            this.pushIndex(field,this.startAnalyzer(doc[field]),docRef);
+
+            const fieldValue = doc[field];
+
+            if(typeof fieldValue != 'string') {continue;}
+
+            this.pushIndex(field,this.startAnalyzer(fieldValue),docRef);
         }
 
         this.documents[docRef] = doc;
@@ -152,8 +157,12 @@ class indexs{
         for(let field in targetDoc){
             if(!this.checkField(field) || field == this.ref){continue;}
 
+                const fieldValue  = targetDoc[field];
+
+                if(typeof fieldValue !== 'string') {continue;}
+
                 const targetIndexs = this.createStringIndexMap(
-                    this.startAnalyzer(targetDoc[field])
+                    this.startAnalyzer(fieldValue)
                 );
                 for(let index in targetIndexs){
                     delete this.indexs[field][index][ref];
