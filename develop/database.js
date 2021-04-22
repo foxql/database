@@ -7,32 +7,31 @@ database.pushCollection({
     fields : [
         'title',
         'content',
-        'entryKey'
+        'entryKey',
+        'parentDocumentId',
+        'createDate'
     ],
     ref : 'documentId',
     schema : {
         title : {
             type : 'string',
             min : 3,
-            max : 80,
-            required : true
+            max : 80
         },
         content : {
             type : 'string',
             min : 7,
-            max : 500,
-            required : true
+            max : 500
         },
         documentId : {
-            createField : ['title', 'content']
+            createField : ['title', 'content', 'parentDocumentId']
         },
         entryKey : {
             createField : ['title']
         },
         createDate : {
-            type : 'date',
-            required : true
-        }   
+            type : 'date'
+        }
     }
 });
 
@@ -43,7 +42,8 @@ database.useCollection('entrys').registerAnalyzer('tokenizer', (string)=>{
 database.useCollection('entrys').addDoc({
     title : 'test title',
     content : 'test example content, very simple usage',
-    createDate : new Date()
+    createDate : new Date(),
+    parentDocumentId : null
 });
 
 
