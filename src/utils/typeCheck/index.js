@@ -1,6 +1,4 @@
 Date.prototype.isValid = function () {
-    // An invalid date object returns NaN for getTime() and NaN is the only
-    // object not strictly equal to itself.
     return this.getTime() === this.getTime();
 };  
 
@@ -10,6 +8,11 @@ function string(data) {
 
 function number(data) {
     return typeof data === 'number'
+}
+
+function empty(data)
+{
+    return data === null;
 }
 
 function date(data)
@@ -27,5 +30,6 @@ function date(data)
 export {
     string,
     number,
-    date
+    date,
+    empty
 }
