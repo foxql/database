@@ -84,7 +84,7 @@ class indexs{
         this.documents[docRef] = doc;
         this.documentLength++;
         this.waitingSave = true;
-        return true;
+        return generatedRef;
     }
 
     createStringIndexMap(string)
