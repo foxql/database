@@ -34,7 +34,7 @@ const methods = {
 
         return typeControl(type, data)
     },
-    createField : (fields, data) => {
+    makeFrom : (fields, data) => {
         let generatedRef = '';
         
         fields.forEach( field => {
@@ -51,7 +51,7 @@ const methods = {
 
 
 const exceptionalMethodMap = {
-    createField : true
+    makeFrom : true
 };
 
 
@@ -67,7 +67,7 @@ export default function validate(document, constraint, refName) {
 
     for(let field in constraint) {
         const rules = constraint[field];
-        if(document[field] === undefined && rules.createField == undefined) {
+        if(document[field] === undefined && rules.makeFrom == undefined) {
             fail = true
             break;
         }
@@ -77,7 +77,7 @@ export default function validate(document, constraint, refName) {
             const ruleValue = rules[method];
 
             if(exceptionalMethodMap[method] !== undefined ) {
-                if(method == 'createField') {
+                if(method == 'makeFrom') {
                     const generatedHash = methods[method](ruleValue, document);
                     if(refName == field) {
                         generatedRef = generatedHash
