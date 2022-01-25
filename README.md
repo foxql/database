@@ -36,7 +36,7 @@ database.pushCollection({
             max : 500,
         },
         documentId : {
-            createField : ['title', 'content']
+            makeFrom : ['title', 'content']
         }   
     }
 });
