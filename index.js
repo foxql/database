@@ -1,6 +1,5 @@
 import indexs from './src/core/invertedIndex';
 import  version from './src/version';
-import { encode, decode } from './src/utils/lz77';
 import {compress, decompress} from 'lzutf8';
 class database {
 
