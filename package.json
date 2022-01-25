@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel develop/index.html"
+    "dev": "parcel develop/index.html --port 3033"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
-    "hash.js": "^1.1.7"
+    "hash.js": "^1.1.7",
+    "lzutf8": "^0.6.0"
   }
 }
