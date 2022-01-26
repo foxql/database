@@ -24,10 +24,10 @@ database.pushCollection({
             max : 500
         },
         documentId : {
-            createField : ['title', 'content', 'parentDocumentId']
+            makeFrom : ['title', 'content', 'parentDocumentId']
         },
         entryKey : {
-            createField : ['title']
+            makeFrom : ['title']
         },
         createDate : {
             type : 'date'

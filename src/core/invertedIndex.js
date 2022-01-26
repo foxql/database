@@ -91,7 +91,7 @@ class indexs{
     {
         let indexPosMap = {};
         string.split(this.indexSeperator).forEach((value, index) => {
-            if(indexPosMap[value] == undefined){
+            if(indexPosMap[value] === undefined){
                 indexPosMap[value] = [index];
             }else{
                 indexPosMap[value].push(index);
@@ -106,7 +106,7 @@ class indexs{
         let processMap = {};
 
         string.split(this.indexSeperator).forEach(keyword => {
-            if(processMap[keyword] == undefined){
+            if(processMap[keyword] === undefined){
                 processMap[keyword] = 0;
             }
             processMap[keyword] ++;
@@ -140,7 +140,7 @@ class indexs{
         };
 
         for(let index in indexPosMap){
-            if(this.indexs[field][index] == undefined){
+            if(this.indexs[field][index] === undefined){
                 this.indexs[field][index] = {};
             }
             this.indexs[field][index][ref] = indexPosMap[index];
@@ -196,7 +196,7 @@ class indexs{
                 findingRefs.forEach(ref => {
                     const doc = this.documents[ref];
                     const info = this.documentInfo[ref][field];
-                    if(resultMap[ref] == undefined){
+                    if(resultMap[ref] === undefined){
                         resultMap[ref] = {
                             document : doc,
                             score : 0

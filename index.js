@@ -1,7 +1,6 @@
 import indexs from './src/core/invertedIndex';
 import  version from './src/version';
-import { encode, decode } from './src/utils/lz77';
-
+import {compress, decompress} from 'lzutf8';
 class database {
 
     constructor()
@@ -36,15 +35,13 @@ class database {
             const indexs = collections[collectionName];
             dump.collections[collectionName] = indexs.export();
         }
-
-        return encode(
-            JSON.stringify(dump)
-        );
+        
+        return compress(JSON.stringify(dump), {outputEncoding: "StorageBinaryString"})
     }
 
-    import(lz77String)
+    import(dumpString)
     {
-        const jsonString = decode(lz77String);
+        const jsonString = decompress(dumpString, {inputEncoding: "StorageBinaryString"})
         const dumpObject = JSON.parse(jsonString);
 
         const dumpCollections = dumpObject.collections;
