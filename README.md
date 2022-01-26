@@ -1,8 +1,6 @@
 # foxql-index
-inverted index database system simple implementation for foxql.
-this project is only use term freq.
-
-[Foxql p2p social network project repo](https://github.com/foxql "Foxql p2p social network project repo")
+Inverted index database system simple implementation for foxql.
+Search result use case p2p connection proof.
 
 ### Documentation
 
